@@ -1,8 +1,16 @@
 'use strict';
 
-var argv = require('minimist')(process.argv.slice(2));
-//console.dir(argv);
-let file = argv._[0];
+let file = 'log.txt';
+try {
+    var argv = require('minimist')(process.argv.slice(2));
+    //console.dir(argv);
+    if (argv._[0]) file = argv._[0];
+} catch (err) {
+    console.log(err);
+    //file = 'log.txt';
+}
+
+const { ENETUNREACH } = require('constants');
 var fs = require('fs');
 
 
