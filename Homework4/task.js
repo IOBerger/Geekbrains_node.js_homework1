@@ -28,20 +28,24 @@ function drawNews(response, n = 100) {
     axios.get('http://yandex.ru').then((res) => {
         //console.log(res.data);
         //response.send('Hello from Express!');
-        console.log(n);
+        console.log('Выводим новостей: ' + n);
+
         var $ = cheerio.load(res.data);
+        obj.news = [];
         $('.news__item-content').each(function(i, element) {
             //console.log($(this).text());
+
             if (i < n) {
                 obj.news[i] = $(this).text();
                 //console.log('i=' + i + ' n=' + n);
             }
         });
+        console.log('Длина массива с новостями: ' + obj.news.length);
+        obj.n = n;
+        response.render('news', obj);
     }).catch((err) => {
         console.log(err);
-    })
-    obj.n = n;
-    response.render('news', obj);
+    });
 }
 
 app.post('/', (req, res) => {
