@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" action="/">
+        Введите количество новостей 
+        <input type="text" name="numberNews" 
+            value="{{#if n}}{{n}}{{/if}}" 
+            placeholder="Введите количество отображаемых новостей"
+        >
+        <input type="submit">
+    </form>
+    <div class="body">
+        <ul class="news_list">
+            {{#each news}}
+                <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    </div>
+</body>
+</html>
